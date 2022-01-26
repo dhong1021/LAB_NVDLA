@@ -1,0 +1,111 @@
+layer     filters    size              input                output
+    0 conv     16  3 x 3 / 1   416 x 416 x   3   ->   416 x 416 x  16 0.150 BF
+    1 max          2 x 2 / 2   416 x 416 x  16   ->   208 x 208 x  16
+    2 conv     32  3 x 3 / 1   208 x 208 x  16   ->   208 x 208 x  32 0.399 BF
+    3 max          2 x 2 / 2   208 x 208 x  32   ->   104 x 104 x  32
+    4 conv     64  3 x 3 / 1   104 x 104 x  32   ->   104 x 104 x  64 0.399 BF
+    5 max          2 x 2 / 2   104 x 104 x  64   ->    52 x  52 x  64
+    6 conv    128  3 x 3 / 1    52 x  52 x  64   ->    52 x  52 x 128 0.399 BF
+    7 max          2 x 2 / 2    52 x  52 x 128   ->    26 x  26 x 128
+    8 conv    256  3 x 3 / 1    26 x  26 x 128   ->    26 x  26 x 256 0.399 BF
+    9 max          2 x 2 / 2    26 x  26 x 256   ->    13 x  13 x 256
+   10 conv    512  3 x 3 / 1    13 x  13 x 256   ->    13 x  13 x 512 0.399 BF
+   11 max          2 x 2 / 1    13 x  13 x 512   ->    13 x  13 x 512
+   12 conv   1024  3 x 3 / 1    13 x  13 x 512   ->    13 x  13 x1024 1.595 BF
+   13 conv    256  1 x 1 / 1    13 x  13 x1024   ->    13 x  13 x 256 0.089 BF
+   14 conv    512  3 x 3 / 1    13 x  13 x 256   ->    13 x  13 x 512 0.399 BF
+   15 conv    255  1 x 1 / 1    13 x  13 x 512   ->    13 x  13 x 255 0.044 BF
+   16 yolo
+   17 route  13
+   18 conv    128  1 x 1 / 1    13 x  13 x 256   ->    13 x  13 x 128 0.011 BF
+   19 upsample            2x    13 x  13 x 128   ->    26 x  26 x 128
+   20 route  19 8
+   21 conv    256  3 x 3 / 1    26 x  26 x 384   ->    26 x  26 x 256 1.196 BF
+   22 conv    255  1 x 1 / 1    26 x  26 x 256   ->    26 x  26 x 255 0.088 BF
+   23 yolo
+Loading weights from yolov3-tiny.weights...Done!
+Not compiled with OpenCV, saving to predictions.png instead
+
+
+ Quantinization! 
+
+ old_weight_mult = 4.000000, weights_multiplier_single = 4.000000 
+
+ Multiplers: weights 4, input 15.7342, output 2.24658 
+ Skip layer: 3 
+ old_weight_mult = 128.000000, weights_multiplier_single = 128.000000 
+
+ Multiplers: weights 128, input 4.41852, output 0.518973 
+ Skip layer: 3 
+ old_weight_mult = 128.000000, weights_multiplier_single = 128.000000 
+
+ Multiplers: weights 128, input 9.17237, output 0.264575 
+ Skip layer: 3 
+ old_weight_mult = 256.000000, weights_multiplier_single = 256.000000 
+
+ Multiplers: weights 256, input 9.70713, output 0.169784 
+ Skip layer: 3 
+ old_weight_mult = 512.000000, weights_multiplier_single = 512.000000 
+
+ Multiplers: weights 512, input 13.1849, output 0.0710202 
+ Skip layer: 3 
+ old_weight_mult = 512.000000, weights_multiplier_single = 512.000000 
+
+ Multiplers: weights 512, input 14.9823, output 0.0633719 
+ Skip layer: 3 
+ old_weight_mult = 256.000000, weights_multiplier_single = 256.000000 
+
+ Multiplers: weights 256, input 15.1913, output 0.0710092 
+ old_weight_mult = 1024.000000, weights_multiplier_single = 1024.000000 
+
+ Multiplers: weights 1024, input 8.62978, output 0.0569804 
+ old_weight_mult = 512.000000, weights_multiplier_single = 512.000000 
+
+ Multiplers: weights 512, input 15.7353, output 0.0620806 
+ old_weight_mult = 256.000000, weights_multiplier_single = 256.000000 
+
+ Multiplers: weights 256, input 15.6297, output 0.125513 
+ Skip layer: 22 
+ Skip layer: 8 
+ old_weight_mult = 128.000000, weights_multiplier_single = 128.000000 
+
+ Multiplers: weights 128, input 15.6939, output 0.245466 
+ Skip layer: 23 
+ Skip layer: 8 
+ old_weight_mult = 1024.000000, weights_multiplier_single = 1024.000000 
+
+ Multiplers: weights 1024, input 15.4093, output 0.0320535 
+ old_weight_mult = 256.000000, weights_multiplier_single = 256.000000 
+
+ Multiplers: weights 256, input 15.8055, output 0.126538 
+ Skip layer: 22 
+
+ 0 - CONVOLUTIONAL 		 l.size = 3  
+
+ 2 - CONVOLUTIONAL 		 l.size = 3  
+
+ 4 - CONVOLUTIONAL 		 l.size = 3  
+
+ 6 - CONVOLUTIONAL 		 l.size = 3  
+
+ 8 - CONVOLUTIONAL 		 l.size = 3  
+
+ 10 - CONVOLUTIONAL 		 l.size = 3  
+
+ 12 - CONVOLUTIONAL 		 l.size = 3  
+
+ 13 - CONVOLUTIONAL 		 l.size = 1  
+
+ 14 - CONVOLUTIONAL 		 l.size = 3  
+
+ 15 - CONVOLUTIONAL 		 l.size = 1  
+
+ 18 - CONVOLUTIONAL 		 l.size = 1  
+
+ 21 - CONVOLUTIONAL 		 l.size = 3  
+
+ 22 - CONVOLUTIONAL 		 l.size = 1  
+dog.jpg: Predicted in 0.862716 seconds.
+dog: 51%	(left_x:  122   top_y:  235   width:  263   height:  267)
+truck: 61%	(left_x:  480   top_y:   81   width:  195   height:   88)
+car: 26%
